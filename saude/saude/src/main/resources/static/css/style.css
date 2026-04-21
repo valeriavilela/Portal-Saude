@@ -1,0 +1,509 @@
+/* ============================================================
+   Sistema de Agendamento UBS — Santa Maria DF
+   style.css
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --gdf-blue:      #003F7E;
+  --gdf-blue-mid:  #0057A8;
+  --gdf-blue-light:#E8F0F9;
+  --gdf-green:     #00703C;
+  --gdf-accent:    #F5A623;
+  --gdf-red:       #C0392B;
+  --border:        rgba(0, 63, 126, 0.18);
+  --card-bg:       #ffffff;
+  --page-bg:       #f4f6f9;
+  --text-main:     #1a1a1a;
+  --text-muted:    #5a6472;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--page-bg);
+  color: var(--text-main);
+}
+
+/* ── LAYOUT ── */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--gdf-blue);
+  color: #fff;
+  padding: 0 24px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  gap: 16px;
+  border-bottom: 3px solid var(--gdf-accent);
+}
+.topbar a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+}
+.topbar a:hover { color: #fff; }
+
+/* ── HEADER ── */
+.header {
+  background: var(--gdf-blue-mid);
+  color: #fff;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.header-logo {
+  width: 52px;
+  height: 52px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.header-logo svg { width: 32px; height: 32px; }
+.header-logo img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; padding: 4px; }
+.header-text h1  { font-size: 18px; font-weight: 600; line-height: 1.2; }
+.header-text p   { font-size: 13px; opacity: 0.8; margin-top: 2px; }
+
+/* ── NAVBAR ── */
+.nav-bar {
+  background: #fff;
+  border-bottom: 2px solid var(--gdf-blue);
+  padding: 0 24px;
+  display: flex;
+}
+.nav-item {
+  padding: 12px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gdf-blue);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: border-color 0.15s, background 0.15s;
+  user-select: none;
+}
+.nav-item:hover  { background: var(--gdf-blue-light); }
+.nav-item.active { border-bottom-color: var(--gdf-blue); }
+
+/* ── BREADCRUMB ── */
+.breadcrumb {
+  background: var(--gdf-blue-light);
+  padding: 8px 24px;
+  font-size: 12px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.breadcrumb span         { color: var(--gdf-blue); cursor: pointer; }
+.breadcrumb span:hover   { text-decoration: underline; }
+.breadcrumb .sep         { opacity: 0.4; }
+.breadcrumb .current     { color: var(--text-main); font-weight: 600; }
+
+/* ── CONTENT AREA ── */
+.content {
+  flex: 1;
+  padding: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.page         { display: none; }
+.page.active  { display: block; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, var(--gdf-blue) 0%, var(--gdf-blue-mid) 100%);
+  border-radius: 8px;
+  padding: 32px 28px;
+  color: #fff;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.hero-icon  { font-size: 48px; flex-shrink: 0; }
+.hero h2    { font-size: 22px; font-weight: 600; margin-bottom: 6px; }
+.hero p     { font-size: 14px; opacity: 0.85; line-height: 1.6; }
+
+/* ── STEP INDICATOR ── */
+.steps-bar {
+  display: flex;
+  margin-bottom: 28px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--card-bg);
+}
+.step-item {
+  flex: 1;
+  padding: 14px 12px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-right: 1px solid var(--border);
+}
+.step-item:last-child { border-right: none; }
+.step-item.done       { color: var(--gdf-green); }
+.step-item.active     { background: var(--gdf-blue); color: #fff; }
+.step-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  margin: 0 auto 4px;
+}
+.step-item.active .step-num { background: rgba(255,255,255,0.25); color: #fff; }
+.step-item.done   .step-num { background: var(--gdf-green); color: #fff; }
+.step-label { font-size: 11px; line-height: 1.3; }
+
+/* ── CARD ── */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.card-header {
+  background: var(--gdf-blue-light);
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gdf-blue);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-body { padding: 18px; }
+
+/* ── FORM ── */
+.form-grid   { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group  { display: flex; flex-direction: column; gap: 5px; }
+.form-label  { font-size: 13px; font-weight: 600; color: var(--text-main); }
+.form-label .req { color: var(--gdf-red); margin-left: 2px; }
+.form-control {
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  font-size: 14px;
+  color: var(--text-main);
+  background: #fff;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.form-control:focus {
+  border-color: var(--gdf-blue-mid);
+  box-shadow: 0 0 0 2px rgba(0, 87, 168, 0.12);
+}
+.form-hint { font-size: 11px; color: var(--text-muted); }
+
+/* ── UBS SELECTION ── */
+.ubs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ubs-card {
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  background: var(--card-bg);
+}
+.ubs-card:hover    { border-color: var(--gdf-blue-mid); background: var(--gdf-blue-light); }
+.ubs-card.selected { border-color: var(--gdf-blue); background: var(--gdf-blue-light); }
+.ubs-name { font-size: 14px; font-weight: 600; color: var(--text-main); margin-bottom: 4px; }
+.ubs-addr { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+.ubs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 6px;
+}
+.badge-green  { background: #E8F5EE; color: #00703C; }
+.badge-yellow { background: #FEF3CD; color: #856404; }
+
+/* ── CALENDAR ── */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-top: 12px;
+}
+.cal-day-header {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 4px 0;
+}
+.cal-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--text-main);
+  transition: background 0.12s;
+  border: 1px solid transparent;
+}
+.cal-day:hover:not(.disabled):not(.empty) {
+  background: var(--gdf-blue-light);
+  border-color: var(--gdf-blue);
+}
+.cal-day.selected  { background: var(--gdf-blue); color: #fff; }
+.cal-day.disabled  { color: #ccc; cursor: default; }
+.cal-day.empty     { cursor: default; }
+.cal-day.today     { font-weight: 700; border: 1px solid var(--gdf-blue); }
+.cal-month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.cal-month-label { font-size: 14px; font-weight: 600; color: var(--text-main); }
+.cal-btn {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 4px 12px;
+  cursor: pointer;
+  color: var(--gdf-blue);
+  font-size: 16px;
+  transition: background 0.15s;
+}
+.cal-btn:hover { background: var(--gdf-blue-light); }
+
+/* ── TIME SLOTS ── */
+.time-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.time-slot {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--text-main);
+  background: #fff;
+  transition: all 0.12s;
+}
+.time-slot:hover:not(.taken)  { border-color: var(--gdf-blue); background: var(--gdf-blue-light); }
+.time-slot.selected           { background: var(--gdf-blue); color: #fff; border-color: var(--gdf-blue); }
+.time-slot.taken              { background: #f5f5f5; color: #bbb; cursor: default; text-decoration: line-through; }
+
+/* ── SUMMARY ── */
+.summary-row { display: flex; border-bottom: 1px solid var(--border); padding: 10px 0; font-size: 14px; }
+.summary-row:last-child { border-bottom: none; }
+.summary-key { color: var(--text-muted); width: 180px; flex-shrink: 0; }
+.summary-val { color: var(--text-main); font-weight: 600; }
+
+/* ── BUTTONS ── */
+.btn-row { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+.btn {
+  padding: 10px 24px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: opacity 0.15s, transform 0.1s;
+}
+.btn:active       { transform: scale(0.98); }
+.btn-primary      { background: var(--gdf-blue); color: #fff; }
+.btn-primary:hover{ opacity: 0.88; }
+.btn-secondary    { background: #fff; border: 1px solid var(--gdf-blue); color: var(--gdf-blue); }
+.btn-secondary:hover { background: var(--gdf-blue-light); }
+
+/* ── NOTICE ── */
+.notice {
+  background: var(--gdf-blue-light);
+  border-left: 4px solid var(--gdf-blue);
+  border-radius: 0 6px 6px 0;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--gdf-blue);
+  margin-bottom: 16px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  line-height: 1.6;
+}
+
+/* ── SUCCESS ── */
+.success-box { text-align: center; padding: 36px 24px; }
+.success-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #E8F5EE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 32px;
+}
+.success-code {
+  background: var(--gdf-blue-light);
+  border: 1px dashed var(--gdf-blue);
+  border-radius: 6px;
+  padding: 12px 20px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gdf-blue);
+  letter-spacing: 2px;
+  display: inline-block;
+  margin: 16px 0;
+}
+.success-box h2 { font-size: 20px; font-weight: 600; color: var(--gdf-green); margin-bottom: 8px; }
+.success-box p  { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+/* ── MY APPOINTMENTS ── */
+.myagend-item {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  background: var(--card-bg);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.myagend-date {
+  background: var(--gdf-blue);
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 12px;
+  text-align: center;
+  flex-shrink: 0;
+  min-width: 52px;
+}
+.myagend-date .day   { font-size: 22px; font-weight: 700; line-height: 1; }
+.myagend-date .month { font-size: 11px; opacity: 0.85; margin-top: 2px; }
+.myagend-info        { flex: 1; }
+.myagend-info h4     { font-size: 14px; font-weight: 600; color: var(--text-main); margin-bottom: 4px; }
+.myagend-info p      { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.status-badge {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.status-confirmed { background: #E8F5EE; color: #00703C; }
+.status-done      { background: #f0f0f0; color: #888; }
+
+/* ── HOME CARDS ── */
+.home-card-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+.home-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.home-card:hover     { border-color: var(--gdf-blue-mid); box-shadow: 0 2px 8px rgba(0,63,126,0.1); }
+.home-card-icon      { font-size: 32px; margin-bottom: 10px; }
+.home-card-title     { font-size: 14px; font-weight: 600; color: var(--gdf-blue); margin-bottom: 6px; }
+.home-card-desc      { font-size: 12px; color: var(--text-muted); }
+
+/* ── HOW IT WORKS ── */
+.step-row { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 14px; }
+.step-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+/* ── UBS INFO LIST ── */
+.ubs-info-row {
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.ubs-info-row:last-child { border-bottom: none; }
+.ubs-num {
+  background: var(--gdf-blue);
+  color: #fff;
+  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--gdf-blue);
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  padding: 16px;
+  font-size: 12px;
+  margin-top: 32px;
+  border-top: 3px solid var(--gdf-accent);
+}
+.footer strong { color: #fff; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .form-grid       { grid-template-columns: 1fr; }
+  .ubs-grid        { grid-template-columns: 1fr; }
+  .home-card-grid  { grid-template-columns: 1fr; }
+  .content         { padding: 16px; }
+  .hero            { flex-direction: column; gap: 12px; text-align: center; }
+  .nav-label       { display: none; }
+  .summary-key     { width: 130px; }
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
